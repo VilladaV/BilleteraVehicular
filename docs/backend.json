@@ -1,0 +1,162 @@
+{
+  "entities": {
+    "Vehicle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Vehicle",
+      "type": "object",
+      "description": "Represents a vehicle owned by a user.",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Disponible",
+            "En reparación",
+            "Dañado",
+            "Decomisado",
+            "Vendido",
+            "No disponible"
+          ]
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": { "type": "string" },
+            "hint": { "type": "string" }
+          }
+        },
+        "propertyCard": {
+          "$ref": "#/entities/PropertyCard"
+        },
+        "documents": {
+          "type": "object",
+          "properties": {
+            "soat": { "$ref": "#/entities/Soat" },
+            "tecnomecanica": { "$ref": "#/entities/Tecnomecanica" },
+            "manual": { "$ref": "#/entities/VehicleDocument" },
+            "fichaTecnica": { "$ref": "#/entities/VehicleDocument" }
+          }
+        },
+        "maintenance": {
+          "$ref": "#/entities/Maintenance"
+        }
+      },
+      "required": ["slug", "status", "propertyCard", "documents", "maintenance"]
+    },
+    "PropertyCard": {
+      "type": "object",
+      "properties": {
+        "front": {
+          "type": "object",
+          "properties": {
+            "numeroLicencia": { "type": "string" },
+            "fechaExpedicion": { "type": "string" },
+            "organismoTransito": { "type": "string" },
+            "propietario": { "$ref": "#/entities/Propietario" },
+            "limitacionesPropiedad": { "type": "string" },
+            "firmaMatriculador": { "type": "string" }
+          }
+        },
+        "back": {
+          "type": "object",
+          "properties": {
+            "placa": { "type": "string" },
+            "marca": { "type": "string" },
+            "linea": { "type": "string" },
+            "cilindraje": { "type": "string" },
+            "modelo": { "type": "string" },
+            "claseVehiculo": { "type": "string" },
+            "color": { "type": "string" },
+            "servicio": { "type": "string" },
+            "carroceria": { "type": "string" },
+            "numPuertas": { "type": "number" },
+            "numMotor": { "type": "string" },
+            "numSerie": { "type": "string" },
+            "numChasis": { "type": "string" },
+            "capacidad": { "type": "string" },
+            "pesoBruto": { "type": "string" },
+            "avaluoComercial": { "type": "number" },
+            "importacion": { "$ref": "#/entities/Importacion" }
+          }
+        }
+      }
+    },
+    "Propietario": {
+      "type": "object",
+      "properties": {
+        "nombre": { "type": "string" },
+        "documento": { "type": "string" },
+        "direccion": { "type": "string" },
+        "ciudad": { "type": "string" },
+        "telefono": { "type": "string" }
+      }
+    },
+    "Importacion": {
+      "type": "object",
+      "properties": {
+        "declaracion": { "type": "string" },
+        "numero": { "type": "string" },
+        "ciudad": { "type": "string" },
+        "fecha": { "type": "string" }
+      }
+    },
+    "Soat": {
+      "type": "object",
+      "properties": {
+        "numeroPoliza": { "type": "string" },
+        "aseguradora": { "type": "string" },
+        "fechaInicioVigencia": { "type": "string" },
+        "fechaFinVigencia": { "type": "string" },
+        "isStored": { "type": "boolean" }
+      }
+    },
+    "Tecnomecanica": {
+      "type": "object",
+      "properties": {
+        "numeroCertificado": { "type": "string" },
+        "cda": { "type": "string" },
+        "fechaExpedicion": { "type": "string" },
+        "fechaVencimiento": { "type": "string" },
+        "isStored": { "type": "boolean" }
+      }
+    },
+    "VehicleDocument": {
+      "type": "object",
+      "properties": {
+        "nombre": { "type": "string" },
+        "isStored": { "type": "boolean" }
+      }
+    },
+    "Maintenance": {
+      "type": "object",
+      "properties": {
+        "currentMileage": { "type": "number" },
+        "tasks": {
+          "type": "array",
+          "items": { "$ref": "#/entities/MaintenanceTask" }
+        }
+      }
+    },
+    "MaintenanceTask": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "lastServiceMileage": { "type": ["number", "null"] },
+        "nextServiceMileage": { "type": ["number", "null"] },
+        "lastServiceDate": { "type": ["string", "null"] },
+        "nextServiceDate": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "auth": {
+    "providers": []
+  },
+  "firestore": {
+    "/vehicles/{vehicleId}": {
+      "schema": { "$ref": "#/entities/Vehicle" },
+      "description": "Stores all vehicle data for all users."
+    }
+  }
+}

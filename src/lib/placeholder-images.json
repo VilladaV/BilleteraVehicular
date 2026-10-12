@@ -1,0 +1,16 @@
+{
+  "placeholderImages": [
+    {
+      "id": "vehicle-1",
+      "description": "A modern sedan car",
+      "imageUrl": "https://images.unsplash.com/photo-1648396427686-ebd2c29f4e49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzZWRhbiUyMGNhcnxlbnwwfHx8fDE3NjU1NTI5NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sedan car"
+    },
+    {
+      "id": "vehicle-2",
+      "description": "A rugged SUV",
+      "imageUrl": "https://images.unsplash.com/photo-1612563893490-d86ed296e5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdXYlMjBjYXJ8ZW58MHx8fHwxNzY1NjU3MDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "suv car"
+    }
+  ]
+}

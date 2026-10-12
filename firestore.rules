@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Make the vehicles collection public for this demo app.
+    // In a real app, you would secure this.
+    match /vehicles/{vehicleId} {
+      allow read, write: if true;
+    }
+  }
+}

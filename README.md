@@ -36,6 +36,7 @@ git init
 git remote add origin https://github.com/<TU_USUARIO>/<TU_REPO>.git
 
 # Subir el código
+# NOTA: Usamos -f porque estamos reescribiendo la historia limpia
 git push -u origin main -f
 ```
 *Nota: El `-f` (force) es necesario si ya tenías historial y lo has limpiado con el paso 1.*
